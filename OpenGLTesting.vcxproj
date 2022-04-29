@@ -24,6 +24,7 @@
     <ProjectGuid>{113a2bef-1a62-4ae6-9dbc-4db1a9f3121f}</ProjectGuid>
     <RootNamespace>OpenGLTesting</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>C++Practice</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -32,18 +32,209 @@ int main()
 
 
 	//points on the screen to draw shapes between
-	GLfloat vertices[] = 
+	//{ y axis, x axis, z axis}
+	GLfloat vertices[] =
 	{
+		-1.0f, -0.6f, 0.0f,
+		-0.8f, -0.6f, 0.0f,
+		-0.8f, -0.4f, 0.0f,
+		-1.0f, -0.4f, 0.0f,
+		-1.0f, -0.6f, 0.0f,
+
+		-1.0f, -0.2f, 0.0f,
+		-0.8f, -0.2f, 0.0f,
+		-0.8f, 0.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		-1.0f, -0.2f, 0.0f,
+
+		-1.0f, 0.2f, 0.0f,
+		-0.8f, 0.2f, 0.0f,
+		-0.8f, 0.4f, 0.0f,
+		-1.0f, 0.4f, 0.0f,
+		-1.0f, 0.2f, 0.0f,
+
+		-1.0f, 0.6f, 0.0f,
+		-0.8f, 0.6f, 0.0f,
+		-0.8f, 0.8f, 0.0f,
+		-1.0f, 0.8f, 0.0f,
+		-1.0f, 0.6f, 0.0f,
+
+		-0.8f, -0.8f, 0.0f,
+		-0.6f, -0.8f, 0.0f,
+		-0.6f, -0.6f, 0.0f,
+		-0.8f, -0.6f, 0.0f,
+		-0.8f, -0.8f, 0.0f,
+
+		-0.8f, -0.4f, 0.0f,
+		-0.6f, -0.4f, 0.0f,
+		-0.6f, -0.2f, 0.0f,
+		-0.8f, -0.2f, 0.0f,
+		-0.8f, -0.4f, 0.0f,
+
+		-0.8f, 0.0f, 0.0f,
+		-0.6f, 0.0f, 0.0f,
+		-0.6f, 0.2f, 0.0f,
+		-0.8f, 0.2f, 0.0f,
+		-0.8f, 0.0f, 0.0f,
+
+		-0.8f, 0.4f, 0.0f,
+		-0.6f, 0.4f, 0.0f,
+		-0.6f, 0.6f, 0.0f,
+		-0.8f, 0.6f, 0.0f,
+		-0.8f, 0.4f, 0.0f,
+
+		-0.6f, -0.6f, 0.0f,
+		-0.4f, -0.6f, 0.0f,
+		-0.4f, -0.4f, 0.0f,
+		-0.6f, -0.4f, 0.0f,
+		-0.6f, -0.6f, 0.0f,
+
+		-0.6f, -0.2f, 0.0f,
+		-0.4f, -0.2f, 0.0f,
+		-0.4f, 0.0f, 0.0f,
+		-0.6f, 0.0f, 0.0f,
+		-0.6f, -0.2f, 0.0f,
+
+		-0.6f, 0.2f, 0.0f,
+		-0.4f, 0.2f, 0.0f,
+		-0.4f, 0.4f, 0.0f,
+		-0.6f, 0.4f, 0.0f,
+		-0.6f, 0.2f, 0.0f,
+
+		-0.6f, 0.6f, 0.0f,
+		-0.4f, 0.6f, 0.0f,
+		-0.4f, 0.8f, 0.0f,
+		-0.6f, 0.8f, 0.0f,
+		-0.6f, 0.6f, 0.0f,
+
+		-0.4f, -0.8f, 0.0f,
+		-0.2f, -0.8f, 0.0f,
+		-0.2f, -0.6f, 0.0f,
+		-0.4f, -0.6f, 0.0f,
+		-0.4f, -0.8f, 0.0f,
+
+		-0.4f, -0.4f, 0.0f,
+		-0.2f, -0.4f, 0.0f,
+		-0.2f, -0.2f, 0.0f,
+		-0.4f, -0.2f, 0.0f,
+		-0.4f, -0.4f, 0.0f,
+
+		-0.4f, 0.0f, 0.0f,
+		-0.2f, 0.0f, 0.0f,
+		-0.2f, 0.2f, 0.0f,
+		-0.4f, 0.2f, 0.0f,
+		-0.4f, 0.0f, 0.0f,
+
+		-0.4f, 0.4f, 0.0f,
+		-0.2f, 0.4f, 0.0f,
+		-0.2f, 0.6f, 0.0f,
+		-0.4f, 0.6f, 0.0f,
+		-0.4f, 0.4f, 0.0f,
+
+		-0.2f, -0.6f, 0.0f,
+		0.0f, -0.6f, 0.0f,
+		0.0f, -0.4f, 0.0f,
+		-0.2f, -0.4f, 0.0f,
+		-0.2f, -0.6f, 0.0f,
+
+		-0.2f, -0.2f, 0.0f,
+		0.0f, -0.2f, 0.0f,
 		0.0f, 0.0f, 0.0f,
-		0.5f, 0.0f, 0.0f,
-		0.5f, 0.5f, 0.0f,
-		0.0f, 0.5f, 0.0f
-		//0.5f,0.5f * float(sqrt(3)) 
+		-0.2f, 0.0f, 0.0f,
+		-0.2f, -0.2f, 0.0f,
+
+		-0.2f, 0.2f, 0.0f,
+		0.0f, 0.2f, 0.0f,
+		0.0f, 0.4f, 0.0f,
+		-0.2f, 0.4f, 0.0f,
+		-0.2f, 0.2f, 0.0f,
+
+		-0.2f, 0.6f, 0.0f,
+		0.0f, 0.6f, 0.0f,
+		0.0f, 0.8f, 0.0f,
+		-0.2f, 0.8f, 0.0f,
+		-0.2f, 0.6f, 0.0f,
+
+		0.0f, -0.8f, 0.0f,
+		0.2f, -0.8f, 0.0f,
+		0.2f, -0.6f, 0.0f,
+		0.0f, -0.6f, 0.0f,
+		0.0f, -0.8f, 0.0f,
+
+		0.0f, -0.4f, 0.0f,
+		0.2f, -0.4f, 0.0f,
+		0.2f, -0.2f, 0.0f,
+		0.0f, -0.2f, 0.0f,
+		0.0f, -0.4f, 0.0f,
+
+		0.0f, 0.0f, 0.0f,
+		0.2f, 0.0f, 0.0f,
+		0.2f, 0.2f, 0.0f,
+		0.0f, 0.2f, 0.0f,
+		0.0f, 0.0f, 0.0f,
+
+		0.0f, 0.4f, 0.0f,
+		0.2f, 0.4f, 0.0f,
+		0.2f, 0.6f, 0.0f,
+		0.0f, 0.6f, 0.0f,
+		0.0f, 0.4f, 0.0f,
+
+		0.2f, -0.6f, 0.0f,
+		0.4f, -0.6f, 0.0f,
+		0.4f, -0.4f, 0.0f,
+		0.2f, -0.4f, 0.0f,
+		0.2f, -0.6f, 0.0f,
+
+		0.2f, -0.2f, 0.0f,
+		0.4f, -0.2f, 0.0f,
+		0.4f, 0.0f, 0.0f,
+		0.2f, 0.0f, 0.0f,
+		0.2f, -0.2f, 0.0f,
+
+		0.2f, 0.2f, 0.0f,
+		0.4f, 0.2f, 0.0f,
+		0.4f, 0.4f, 0.0f,
+		0.2f, 0.4f, 0.0f,
+		0.2f, 0.2f, 0.0f,
+
+		0.2f, 0.6f, 0.0f,
+		0.4f, 0.6f, 0.0f,
+		0.4f, 0.8f, 0.0f,
+		0.2f, 0.8f, 0.0f,
+		0.2f, 0.6f, 0.0f,
+
+		0.4f, -0.8f, 0.0f,
+		0.6f, -0.8f, 0.0f,
+		0.6f, -0.6f, 0.0f,
+		0.4f, -0.6f, 0.0f,
+		0.4f, -0.8f, 0.0f,
+
+		0.4f, -0.4f, 0.0f,
+		0.6f, -0.4f, 0.0f,
+		0.6f, -0.2f, 0.0f,
+		0.4f, -0.2f, 0.0f,
+		0.4f, -0.4f, 0.0f,
+
+		0.4f, 0.0f, 0.0f,
+		0.6f, 0.0f, 0.0f,
+		0.6f, 0.2f, 0.0f,
+		0.4f, 0.2f, 0.0f,
+		0.4f, 0.0f, 0.0f,
+
+		0.4f, 0.4f, 0.0f,
+		0.6f, 0.4f, 0.0f,
+		0.6f, 0.6f, 0.0f,
+		0.4f, 0.6f, 0.0f,
+		0.4f, 0.4f, 0.0f,
+
+		/*-0.8f, -0.8f, 0.0f,
+		-0.8f, 0.8f, 0.0f,
+		0.8f, 0.8f, 0.0f,
+		0.8f, -0.8f, 0.0f*/
 	};
 
-
 	//create a window of size 800 800 with name checkersboard
-	GLFWwindow* window = glfwCreateWindow(1000, 1000, "Checkers Board", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(800, 800, "Checkers Board", NULL, NULL);
 
 	//make sure window oepns
 	if (window == NULL)
@@ -60,7 +251,7 @@ int main()
 	gladLoadGL();
 
 	//specify the viewport
-	glViewport(0,0,1000,1000);
+	glViewport(0,0,800,800);
 
 	//get shaders into whatever it is called
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -115,11 +306,16 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
+		//draw board
 		//draw triangles start at point in vertices and how many points to connect
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		glDrawArrays(GL_TRIANGLES, 1, 3);
-		glDrawArrays(GL_TRIANGLES, 2, 3);
-		glDrawArrays(GL_TRIANGLES, 3, 3);
+		for (int i = 0; i < sizeof(vertices); i = i + 5)
+		{
+			glDrawArrays(GL_TRIANGLES, i, 3);
+			glDrawArrays(GL_TRIANGLES, i + 2, 3);
+		}
+
+		glDrawArrays(GL_LINE, sizeof(vertices) - 4, 2);
+
 		//refresh buffer to show triangles
 		glfwSwapBuffers(window);
 

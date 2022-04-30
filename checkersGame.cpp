@@ -43,12 +43,15 @@ using namespace checkers;
 		turn = !turn;
 	}
 
+	//executes valid moves by editing the position and piece
 	bool checkersGame::validMove(int move[])
 	{
+		//turn keeps track of red and blues turns 
 		if (turn)
 		{
 			for (int i = 0; i < sizeof(redPieces); i++)
 			{
+				//makes sure move is valid
 				if (move[0] == redPieces[i] && possibleMoves(redPieces[i], move[1]))
 				{
 					int change = position[redPieces[i]];
@@ -64,6 +67,7 @@ using namespace checkers;
 		{
 			for (int i = 0; i < sizeof(bluePieces); i++)
 			{
+				//makes sure move is valid
 				if (move[0] == bluePieces[i] && possibleMoves(bluePieces[i], move[1]))
 				{
 					int change = position[bluePieces[i]];
@@ -75,6 +79,7 @@ using namespace checkers;
 				}
 			}
 		}
+		//if the move is invalid return false
 		return false;
 	}
 
@@ -93,7 +98,7 @@ using namespace checkers;
 		{
 			return true;
 		}
-
+		//checks each space's valid moves excluding 1 and 32 which are coded above
 		for (int i = 2; i < 32; i++)
 		{
 			if (i != 9 && i != 17 && i != 25 && i != 8 && i != 16 && i != 24)
@@ -207,9 +212,12 @@ using namespace checkers;
 				}
 			}
 		}
+		//return false if move is invalid
 		return false;
 	}
 
+	//returns true if either player wins
+	//print message of winning player
 	bool checkersGame::checkWin()
 	{
 		bool redHasPieces = false;
@@ -241,4 +249,35 @@ using namespace checkers;
 			cout << "\nCongratulations Blue Wins!!\n\n\n";
 			return true;
 		}
+	}
+
+	bool checkersGame::jump(int space, int move, int previous)
+	{
+		if (position[space] != previous && possibleMoves(space, move))
+		{
+			if (position[space] == 1)
+			{
+				for (int i = 0; i < 12; i++)
+				{
+					if (redPieces[i] == space)
+					{
+						redPieces[i] = 0;
+					}
+				}
+			}
+			else if (position[space] == 2)
+			{
+				for (int i = 0; i < 12; i++)
+				{
+					if (bluePieces[i] == space)
+					{
+						bluePieces[i] = 0;
+					}
+				}
+			}
+			position[space] = 0;
+			
+			return true;
+		}
+		return false;
 	}

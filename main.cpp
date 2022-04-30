@@ -8,6 +8,7 @@ using namespace checkers;
 
 //Vertex source code and fragment source code are copy/pasted as per the tutorial that I am following
 //Vertex Shader Source Code
+//ges location and color data sends color data to fragment shader
 const char* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"
 "in layout (location = 1) vec3 vertexColor;\n"
@@ -18,6 +19,7 @@ const char* vertexShaderSource = "#version 330 core\n"
 "   theColor = vertexColor;"
 "}\0";
 //Fragment Shader source code
+//gets color data from vertex shader
 const char* fragmentShaderSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "in vec3 theColor;"
@@ -38,7 +40,8 @@ int main()
 
 
 	//points on the screen to draw shapes between
-	//{ y axis, x axis, z axis}
+	//1st line{ x axis, y axis, z axis}
+	// 2nd line RGB values
 	// I put them into groups of 5 to see how GL is rendering the triangles 
 	// should create a triangle between vertices 1-3 and 3-5 to form a square
 	GLfloat vertices[] =
@@ -929,7 +932,7 @@ int main()
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	//vertex has x y and z values ie 3 floats
+	//vertex position has x y and z values  = 3 floats
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 
 	glEnableVertexAttribArray(0);
@@ -939,8 +942,10 @@ int main()
 
 	glEnableVertexAttribArray(1);
 
+
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+	glBindVertexArray(1);
 
 	//make background black
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -949,8 +954,10 @@ int main()
 	//swap buffers
 	glfwSwapBuffers(window);
 
+	//create checkers object
 	checkersGame checkers;
-	//display window while it is not closed
+
+	//display window while it is not closed and game is not over
 	while (!glfwWindowShouldClose(window) || !checkers.checkWin())
 	{
 		//background color
@@ -994,6 +1001,7 @@ int main()
 
 		glfwPollEvents();
 
+		//start checkers game
 		checkers.play();
 	}
 

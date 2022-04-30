@@ -1,8 +1,10 @@
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
+#include "checkersGame.h"
 
 using namespace std;
+using namespace checkers;
 
 //Vertex source code and fragment source code are copy/pasted as per the tutorial that I am following
 //Vertex Shader Source Code
@@ -33,210 +35,212 @@ int main()
 
 	//points on the screen to draw shapes between
 	//{ y axis, x axis, z axis}
+	// I put them into groups of 5 to see how GL is rendering the triangles 
+	// should create a triangle between vertices 1-3 and 3-5 to form a square
 	GLfloat vertices[] =
 	{
-		-1.0f, -0.6f, 0.0f,
 		-0.8f, -0.6f, 0.0f,
-		-0.8f, -0.4f, 0.0f,
-		-1.0f, -0.4f, 0.0f,
-		-1.0f, -0.6f, 0.0f,
-
-		-1.0f, -0.2f, 0.0f,
-		-0.8f, -0.2f, 0.0f,
-		-0.8f, 0.0f, 0.0f,
-		-1.0f, 0.0f, 0.0f,
-		-1.0f, -0.2f, 0.0f,
-
-		-1.0f, 0.2f, 0.0f,
-		-0.8f, 0.2f, 0.0f,
-		-0.8f, 0.4f, 0.0f,
-		-1.0f, 0.4f, 0.0f,
-		-1.0f, 0.2f, 0.0f,
-
-		-1.0f, 0.6f, 0.0f,
-		-0.8f, 0.6f, 0.0f,
-		-0.8f, 0.8f, 0.0f,
-		-1.0f, 0.8f, 0.0f,
-		-1.0f, 0.6f, 0.0f,
-
-		-0.8f, -0.8f, 0.0f,
-		-0.6f, -0.8f, 0.0f,
 		-0.6f, -0.6f, 0.0f,
+		-0.6f, -0.4f, 0.0f,
+		-0.8f, -0.4f, 0.0f,
 		-0.8f, -0.6f, 0.0f,
-		-0.8f, -0.8f, 0.0f,
 
-		-0.8f, -0.4f, 0.0f,
-		-0.6f, -0.4f, 0.0f,
-		-0.6f, -0.2f, 0.0f,
 		-0.8f, -0.2f, 0.0f,
-		-0.8f, -0.4f, 0.0f,
-
-		-0.8f, 0.0f, 0.0f,
+		-0.6f, -0.2f, 0.0f,
 		-0.6f, 0.0f, 0.0f,
-		-0.6f, 0.2f, 0.0f,
+		-0.8f, 0.0f, 0.0f,
+		-0.8f, -0.2f, 0.0f,
+
 		-0.8f, 0.2f, 0.0f,
-		-0.8f, 0.0f, 0.0f,
-
-		-0.8f, 0.4f, 0.0f,
+		-0.6f, 0.2f, 0.0f,
 		-0.6f, 0.4f, 0.0f,
-		-0.6f, 0.6f, 0.0f,
+		-0.8f, 0.4f, 0.0f,
+		-0.8f, 0.2f, 0.0f,
+
 		-0.8f, 0.6f, 0.0f,
-		-0.8f, 0.4f, 0.0f,
-
-		-0.6f, -0.6f, 0.0f,
-		-0.4f, -0.6f, 0.0f,
-		-0.4f, -0.4f, 0.0f,
-		-0.6f, -0.4f, 0.0f,
-		-0.6f, -0.6f, 0.0f,
-
-		-0.6f, -0.2f, 0.0f,
-		-0.4f, -0.2f, 0.0f,
-		-0.4f, 0.0f, 0.0f,
-		-0.6f, 0.0f, 0.0f,
-		-0.6f, -0.2f, 0.0f,
-
-		-0.6f, 0.2f, 0.0f,
-		-0.4f, 0.2f, 0.0f,
-		-0.4f, 0.4f, 0.0f,
-		-0.6f, 0.4f, 0.0f,
-		-0.6f, 0.2f, 0.0f,
-
 		-0.6f, 0.6f, 0.0f,
-		-0.4f, 0.6f, 0.0f,
-		-0.4f, 0.8f, 0.0f,
 		-0.6f, 0.8f, 0.0f,
-		-0.6f, 0.6f, 0.0f,
+		-0.8f, 0.8f, 0.0f,
+		-0.8f, 0.6f, 0.0f,
 
+		-0.6f, -0.8f, 0.0f,
 		-0.4f, -0.8f, 0.0f,
-		-0.2f, -0.8f, 0.0f,
-		-0.2f, -0.6f, 0.0f,
 		-0.4f, -0.6f, 0.0f,
-		-0.4f, -0.8f, 0.0f,
+		-0.6f, -0.6f, 0.0f,
+		-0.6f, -0.8f, 0.0f,
 
+		-0.6f, -0.4f, 0.0f,
 		-0.4f, -0.4f, 0.0f,
-		-0.2f, -0.4f, 0.0f,
-		-0.2f, -0.2f, 0.0f,
 		-0.4f, -0.2f, 0.0f,
-		-0.4f, -0.4f, 0.0f,
+		-0.6f, -0.2f, 0.0f,
+		-0.6f, -0.4f, 0.0f,
 
+		-0.6f, 0.0f, 0.0f,
 		-0.4f, 0.0f, 0.0f,
-		-0.2f, 0.0f, 0.0f,
-		-0.2f, 0.2f, 0.0f,
 		-0.4f, 0.2f, 0.0f,
-		-0.4f, 0.0f, 0.0f,
+		-0.6f, 0.2f, 0.0f,
+		-0.6f, 0.0f, 0.0f,
 
+		-0.6f, 0.4f, 0.0f,
 		-0.4f, 0.4f, 0.0f,
-		-0.2f, 0.4f, 0.0f,
-		-0.2f, 0.6f, 0.0f,
 		-0.4f, 0.6f, 0.0f,
-		-0.4f, 0.4f, 0.0f,
+		-0.6f, 0.6f, 0.0f,
+		-0.6f, 0.4f, 0.0f,
 
+		-0.4f, -0.6f, 0.0f,
 		-0.2f, -0.6f, 0.0f,
-		0.0f, -0.6f, 0.0f,
-		0.0f, -0.4f, 0.0f,
 		-0.2f, -0.4f, 0.0f,
-		-0.2f, -0.6f, 0.0f,
+		-0.4f, -0.4f, 0.0f,
+		-0.4f, -0.6f, 0.0f,
 
+		-0.4f, -0.2f, 0.0f,
 		-0.2f, -0.2f, 0.0f,
-		0.0f, -0.2f, 0.0f,
-		0.0f, 0.0f, 0.0f,
 		-0.2f, 0.0f, 0.0f,
-		-0.2f, -0.2f, 0.0f,
+		-0.4f, 0.0f, 0.0f,
+		-0.4f, -0.2f, 0.0f,
 
+		-0.4f, 0.2f, 0.0f,
 		-0.2f, 0.2f, 0.0f,
-		0.0f, 0.2f, 0.0f,
-		0.0f, 0.4f, 0.0f,
 		-0.2f, 0.4f, 0.0f,
-		-0.2f, 0.2f, 0.0f,
+		-0.4f, 0.4f, 0.0f,
+		-0.4f, 0.2f, 0.0f,
 
+		-0.4f, 0.6f, 0.0f,
 		-0.2f, 0.6f, 0.0f,
-		0.0f, 0.6f, 0.0f,
-		0.0f, 0.8f, 0.0f,
 		-0.2f, 0.8f, 0.0f,
-		-0.2f, 0.6f, 0.0f,
-
+		-0.4f, 0.8f, 0.0f,
+		-0.4f, 0.6f, 0.0f,
+		
+		-0.2f, -0.8f, 0.0f,
 		0.0f, -0.8f, 0.0f,
-		0.2f, -0.8f, 0.0f,
-		0.2f, -0.6f, 0.0f,
 		0.0f, -0.6f, 0.0f,
-		0.0f, -0.8f, 0.0f,
+		-0.2f, -0.6f, 0.0f,
+		-0.2f, -0.8f, 0.0f,
 
+		-0.2f, -0.4f, 0.0f,
 		0.0f, -0.4f, 0.0f,
-		0.2f, -0.4f, 0.0f,
-		0.2f, -0.2f, 0.0f,
 		0.0f, -0.2f, 0.0f,
-		0.0f, -0.4f, 0.0f,
+		-0.2f, -0.2f, 0.0f,
+		-0.2f, -0.4f, 0.0f,
 
+		-0.2f, 0.0f, 0.0f,
 		0.0f, 0.0f, 0.0f,
-		0.2f, 0.0f, 0.0f,
-		0.2f, 0.2f, 0.0f,
 		0.0f, 0.2f, 0.0f,
-		0.0f, 0.0f, 0.0f,
+		-0.2f, 0.2f, 0.0f,
+		-0.2f, 0.0f, 0.0f,
 
+		-0.2f, 0.4f, 0.0f,
 		0.0f, 0.4f, 0.0f,
-		0.2f, 0.4f, 0.0f,
-		0.2f, 0.6f, 0.0f,
 		0.0f, 0.6f, 0.0f,
-		0.0f, 0.4f, 0.0f,
+		-0.2f, 0.6f, 0.0f,
+		-0.2f, 0.4f, 0.0f,
 
+		0.0f, -0.6f, 0.0f,
 		0.2f, -0.6f, 0.0f,
-		0.4f, -0.6f, 0.0f,
-		0.4f, -0.4f, 0.0f,
 		0.2f, -0.4f, 0.0f,
-		0.2f, -0.6f, 0.0f,
+		0.0f, -0.4f, 0.0f,
+		0.0f, -0.6f, 0.0f,
 
+		0.0f, -0.2f, 0.0f,
 		0.2f, -0.2f, 0.0f,
-		0.4f, -0.2f, 0.0f,
-		0.4f, 0.0f, 0.0f,
 		0.2f, 0.0f, 0.0f,
-		0.2f, -0.2f, 0.0f,
+		0.0f, 0.0f, 0.0f,
+		0.0f, -0.2f, 0.0f,
 
+		0.0f, 0.2f, 0.0f,
 		0.2f, 0.2f, 0.0f,
-		0.4f, 0.2f, 0.0f,
-		0.4f, 0.4f, 0.0f,
 		0.2f, 0.4f, 0.0f,
-		0.2f, 0.2f, 0.0f,
+		0.0f, 0.4f, 0.0f,
+		0.0f, 0.2f, 0.0f,
 
+		0.0f, 0.6f, 0.0f,
 		0.2f, 0.6f, 0.0f,
-		0.4f, 0.6f, 0.0f,
-		0.4f, 0.8f, 0.0f,
 		0.2f, 0.8f, 0.0f,
-		0.2f, 0.6f, 0.0f,
+		0.0f, 0.8f, 0.0f,
+		0.0f, 0.6f, 0.0f,
 
+		0.2f, -0.8f, 0.0f,
 		0.4f, -0.8f, 0.0f,
-		0.6f, -0.8f, 0.0f,
-		0.6f, -0.6f, 0.0f,
 		0.4f, -0.6f, 0.0f,
-		0.4f, -0.8f, 0.0f,
+		0.2f, -0.6f, 0.0f,
+		0.2f, -0.8f, 0.0f,
 
+		0.2f, -0.4f, 0.0f,
 		0.4f, -0.4f, 0.0f,
-		0.6f, -0.4f, 0.0f,
-		0.6f, -0.2f, 0.0f,
 		0.4f, -0.2f, 0.0f,
-		0.4f, -0.4f, 0.0f,
+		0.2f, -0.2f, 0.0f,
+		0.2f, -0.4f, 0.0f,
 
+		0.2f, 0.0f, 0.0f,
 		0.4f, 0.0f, 0.0f,
-		0.6f, 0.0f, 0.0f,
-		0.6f, 0.2f, 0.0f,
 		0.4f, 0.2f, 0.0f,
-		0.4f, 0.0f, 0.0f,
+		0.2f, 0.2f, 0.0f,
+		0.2f, 0.0f, 0.0f,
 
+		0.2f, 0.4f, 0.0f,
 		0.4f, 0.4f, 0.0f,
-		0.6f, 0.4f, 0.0f,
-		0.6f, 0.6f, 0.0f,
 		0.4f, 0.6f, 0.0f,
-		0.4f, 0.4f, 0.0f,
+		0.2f, 0.6f, 0.0f,
+		0.2f, 0.4f, 0.0f,
 
-		/*-0.8f, -0.8f, 0.0f,
+		0.4f, -0.6f, 0.0f,
+		0.6f, -0.6f, 0.0f,
+		0.6f, -0.4f, 0.0f,
+		0.4f, -0.4f, 0.0f,
+		0.4f, -0.6f, 0.0f,
+
+		0.4f, -0.2f, 0.0f,
+		0.6f, -0.2f, 0.0f,
+		0.6f, 0.0f, 0.0f,
+		0.4f, 0.0f, 0.0f,
+		0.4f, -0.2f, 0.0f,
+
+		0.4f, 0.2f, 0.0f,
+		0.6f, 0.2f, 0.0f,
+		0.6f, 0.4f, 0.0f,
+		0.4f, 0.4f, 0.0f,
+		0.4f, 0.2f, 0.0f,
+
+		0.4f, 0.6f, 0.0f,
+		0.6f, 0.6f, 0.0f,
+		0.6f, 0.8f, 0.0f,
+		0.4f, 0.8f, 0.0f,
+		0.4f, 0.6f, 0.0f,
+
+		0.6f, -0.8f, 0.0f,
+		0.8f, -0.8f, 0.0f,
+		0.8f, -0.6f, 0.0f,
+		0.6f, -0.6f, 0.0f,
+		0.6f, -0.8f, 0.0f,
+
+		0.6f, -0.4f, 0.0f,
+		0.8f, -0.4f, 0.0f,
+		0.8f, -0.2f, 0.0f,
+		0.6f, -0.2f, 0.0f,
+		0.6f, -0.4f, 0.0f,
+
+		0.6f, 0.0f, 0.0f,
+		0.8f, 0.0f, 0.0f,
+		0.8f, 0.2f, 0.0f,
+		0.6f, 0.2f, 0.0f,
+		0.6f, 0.0f, 0.0f,
+
+		0.6f, 0.4f, 0.0f,
+		0.8f, 0.4f, 0.0f,
+		0.8f, 0.6f, 0.0f,
+		0.6f, 0.6f, 0.0f,
+		0.6f, 0.4f, 0.0f,
+
+		-0.8f, -0.8f, 0.0f,
 		-0.8f, 0.8f, 0.0f,
 		0.8f, 0.8f, 0.0f,
-		0.8f, -0.8f, 0.0f*/
+		0.8f, -0.8f, 0.0f
 	};
 
 	//create a window of size 800 800 with name checkersboard
 	GLFWwindow* window = glfwCreateWindow(800, 800, "Checkers Board", NULL, NULL);
 
-	//make sure window oepns
+	//make sure window opens
 	if (window == NULL)
 	{
 		cout << "Failed to create window.\n";
@@ -253,7 +257,7 @@ int main()
 	//specify the viewport
 	glViewport(0,0,800,800);
 
-	//get shaders into whatever it is called
+	//create shaders and use unsigned integer to store memory location
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 	glCompileShader(vertexShader);
@@ -264,15 +268,16 @@ int main()
 
 	//create shader program
 	GLuint shaderProgram = glCreateProgram();
+	//add shaders to program
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glLinkProgram(shaderProgram);
-
+	//delete shaders after they have been added
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
 
-	//no idea
+	//use unsigned int to store memory location of vertex array object and vertex buffer object
 	GLuint VAO, VBO;
 
 	glGenVertexArrays(1, &VAO);
@@ -283,7 +288,7 @@ int main()
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	//vertex has x y and z values
+	//vertex has x y and z values ie 3 floats
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
 	glEnableVertexAttribArray(0);
@@ -301,27 +306,25 @@ int main()
 	//display window while it is not closed
 	while (!glfwWindowShouldClose(window))
 	{
-
+		//background color
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
 		//draw board
 		//draw triangles start at point in vertices and how many points to connect
-		for (int i = 0; i < sizeof(vertices); i = i + 5)
+		for (int i = 0; i < 32*5; i = i + 5)
 		{
 			glDrawArrays(GL_TRIANGLES, i, 3);
 			glDrawArrays(GL_TRIANGLES, i + 2, 3);
 		}
-
-		glDrawArrays(GL_LINE, sizeof(vertices) - 4, 2);
-
-		//refresh buffer to show triangles
+		glDrawArrays(GL_LINE_LOOP, 32*5, 4);
+		//refresh buffer to show board
 		glfwSwapBuffers(window);
-
 
 		glfwPollEvents();
 	}
+
 
 	//remove things from memory
 	glDeleteVertexArrays(1, &VAO);
@@ -330,6 +333,14 @@ int main()
 	//get rid of window and terminate glfw
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	//good exit code
+
+	checkersGame checkers;
+	int i = 0;
+	while (i < 50 || !checkers.checkWin())
+	{
+		checkers.play();
+		i++;
+	}
+	//exit code
 	return 0;
 }

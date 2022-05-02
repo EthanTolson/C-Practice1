@@ -1,6 +1,5 @@
 # C-Practice1 - Overview
 
-{Important!  Do not say in this section that this is college assignment.  Talk about what you are trying to accomplish as a software engineer to further your learning.}
 I decided to learn C++ and decided that creating the game of checkers would be a great way to apply what I learned.
 I also learned about OpenGL a very popular library for C++ that handles graphics.
 

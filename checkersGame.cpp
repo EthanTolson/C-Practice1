@@ -57,12 +57,11 @@ using namespace checkers;
 				//makes sure move is valid
 				if (move[0] == redPieces[i] && possibleMoves(redPieces[i], move[1], false))
 				{
-					int change = position[redPieces[i]];
-					position[redPieces[i]] = 0;
-					position[move[1]] = change;
+					int change = position[redPieces[i]-1];
+					position[redPieces[i]-1] = 0;
+					position[move[1]-1] = change;
 					redPieces[i] = move[1];
 					return true;
-					break;
 				}
 			}
 		}
@@ -73,12 +72,11 @@ using namespace checkers;
 				//makes sure move is valid
 				if (move[0] == bluePieces[i] && possibleMoves(bluePieces[i], move[1], false))
 				{
-					int change = position[bluePieces[i]];
-					position[bluePieces[i]] = 0;
-					position[move[1]] = change;
+					int change = position[bluePieces[i]-1];
+					position[bluePieces[i]-1] = 0;
+					position[move[1]-1] = change;
 					bluePieces[i] = move[1];
 					return true;
-					break;
 				}
 			}
 		}
@@ -101,17 +99,17 @@ using namespace checkers;
 			}
 			else
 			{
-				movingBackwards = (position[space] == 1 || position[space] >= 3);
-				movingForwards = (position[space] == 2 || position[space] >= 3);
+				movingBackwards = (position[space - 1] == 1 || position[space - 1] >= 3);
+				movingForwards = (position[space - 1] == 2 || position[space - 1] >= 3);
 			}
 		}
 		else
 		{
-			movingBackwards = (position[space] == 2 || position[space] >= 3) && position[move] < 1;
-			movingForwards = (position[space] == 1 || position[space] >= 3) && position[move] < 1;
+			movingBackwards = (position[space - 1] == 2 || position[space-1] >= 3) && position[move-1] < 1;
+			movingForwards = (position[space - 1] == 1 || position[space-1] >= 3) && position[move-1] < 1;
 		}
 		//check if the player wants to jump
-		if ((move - 4 > space || move + 4 < space) && position[move] == 0 && position[getJumpAfter(space,move)] != position[space])
+		if ((move - 4 > space || move + 4 < space) && position[move-1] == 0 && (position[getJumpAfter(space,move)-1] != position[space-1]))
 		{
 			if (jump(getJumpAfter(space, move), move, space))
 			{
@@ -119,11 +117,11 @@ using namespace checkers;
 			}
 		}
 		//position 1 and 32 only have 1 space to move to
-		if (space == 1 && move == 5 && position[move] < 1)
+		if (space == 1 && move == 5 && position[move-1] < 1)
 		{
 			return true;
 		}
-		else if (space == 32 && move == 28 && position[move] < 1)
+		else if (space == 32 && move == 28 && position[move-1] < 1)
 		{
 			return true;
 		}
@@ -137,7 +135,6 @@ using namespace checkers;
 					if (space == i && (move == i + 3 || move == i + 4))
 					{
 						return true;
-						break;
 					}
 				}
 				else if (i - 8 <= 0)
@@ -146,9 +143,8 @@ using namespace checkers;
 					if (space == i && (move == i - 3 || move == i - 4) && movingBackwards)
 					{
 						return true;
-						break;
 					}
-					else if ((space == i && (move == i + 4 || move == i + 5) && movingForwards))
+					else if (space == i && (move == i + 4 || move == i + 5) && movingForwards)
 					{
 						return true;
 					}
@@ -159,9 +155,8 @@ using namespace checkers;
 					if (space == i && (move == i - 4 || move == i - 5) && movingBackwards)
 					{
 						return true;
-						break;
 					}
-					else if ((space == i && (move == i + 3 || move == i + 4) && movingForwards))
+					else if (space == i && (move == i + 3 || move == i + 4) && movingForwards)
 					{
 						return true;
 					}
@@ -172,9 +167,8 @@ using namespace checkers;
 					if (space == i && (move == i - 3 || move == i - 4) && movingBackwards)
 					{
 						return true;
-						break;
 					}
-					else if ((space == i && (move == i + 4 || move == i + 5) && movingForwards))
+					else if (space == i && (move == i + 4 || move == i + 5) && movingForwards)
 					{
 						return true;
 					}
@@ -185,9 +179,8 @@ using namespace checkers;
 					if (space == i && (move == i - 4 || move == i - 5) && movingBackwards)
 					{
 						return true;
-						break;
 					}
-					else if ((space == i && (move == i + 3 || move == i + 4) && movingForwards))
+					else if (space == i && (move == i + 3 || move == i + 4) && movingForwards)
 					{
 						return true;
 					}
@@ -198,9 +191,8 @@ using namespace checkers;
 					if (space == i && (move == i - 3 || move == i - 4) && movingBackwards)
 					{
 						return true;
-						break;
 					}
-					else if ((space == i && (move == i + 4 || move == i + 5) && movingForwards))
+					else if (space == i && (move == i + 4 || move == i + 5) && movingForwards)
 					{
 						return true;
 					}
@@ -211,9 +203,8 @@ using namespace checkers;
 					if (space == i && (move == i - 4 || move == i - 5) && movingBackwards)
 					{
 						return true;
-						break;
 					}
-					else if ((space == i && (move == i + 3 || move == i + 4) && movingForwards))
+					else if (space == i && (move == i + 3 || move == i + 4) && movingForwards)
 					{
 						return true;
 					}
@@ -223,7 +214,6 @@ using namespace checkers;
 					if (space == i && (move == i - 3 || move == i - 4))
 					{
 						return true;
-						break;
 					}
 				}
 			}
@@ -232,12 +222,10 @@ using namespace checkers;
 				if (space == i && (move == i + 4) && movingForwards)
 				{
 					return true;
-					break;
 				}
 				else if (space == i && (move == i - 4) && movingBackwards)
 				{
 					return true;
-					break;
 				}
 			}
 		}
@@ -287,9 +275,9 @@ using namespace checkers;
 		{
 			return false;
 		}
-		if (possibleMoves(space, move, true, position[previous] > 2))
+		if (possibleMoves(space, move, true, position[previous-1] > 2))
 		{
-			if (position[space] == 1)
+			if (position[space-1] == 1 || position[space-1] == 3)
 			{
 				for (int i = 0; i < 12; i++)
 				{
@@ -299,7 +287,7 @@ using namespace checkers;
 					}
 				}
 			}
-			else if (position[space] == 2)
+			else if (position[space-1] == 2 || position[space-1] == 4)
 			{
 				for (int i = 0; i < 12; i++)
 				{
@@ -309,7 +297,7 @@ using namespace checkers;
 					}
 				}
 			}
-			position[space] = 0;
+			position[space-1] = 0;
 			
 			return true;
 		}
@@ -402,14 +390,14 @@ using namespace checkers;
 			{
 				if (bluePieces[i] == j)
 				{
-					position[bluePieces[i]] = 4;
+					position[bluePieces[i]-1] = 4;
 				}
 			}
 			for (int j = 29; j <= 32; j++)
 			{
 				if (redPieces[i] == j)
 				{
-					position[redPieces[i]] = 3;
+					position[redPieces[i]-1] = 3;
 				}
 			}
 		}

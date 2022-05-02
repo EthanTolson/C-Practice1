@@ -81,8 +81,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\shdeb\source\repos\OpenGLTesting\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\shdeb\source\repos\OpenGLTesting\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Enter\source\repos\C-Practice1\Libraries\include;C:\Users\shdeb\source\repos\OpenGLTesting\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Enter\source\repos\C-Practice1\Libraries\lib;C:\Users\shdeb\source\repos\OpenGLTesting\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

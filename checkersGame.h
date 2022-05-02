@@ -15,9 +15,10 @@ namespace checkers
 			int position[32] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			void play();
 			bool validMove(int move[]);
-			bool possibleMoves(int space, int move);
+			bool possibleMoves(int space, int move, bool jumpCheck);
 			bool jump(int space, int move, int previous);
 			bool checkWin();
+			int getJumpAfter(int space, int move);
 		private:
 	};
 }

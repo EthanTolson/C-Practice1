@@ -40,6 +40,7 @@ using namespace checkers;
 				i++;
 			}
 		}
+		checkPromotion();
 		turn = !turn;
 	}
 
@@ -83,7 +84,7 @@ using namespace checkers;
 		return false;
 	}
 
-	bool checkersGame::possibleMoves(int space, int move, bool jumpCheck)
+	bool checkersGame::possibleMoves(int space, int move, bool jumpCheck, bool isKing)
 	{
 		//Checks if the piece moving is red or blue or a king to determine if they can move backwards or forwards
 		//also checks for a blocking piece
@@ -91,8 +92,16 @@ using namespace checkers;
 		bool movingForwards = false;
 		if (jumpCheck)
 		{
-			movingBackwards = true;
-			movingForwards = true;
+			if (isKing)
+			{
+				movingBackwards = true;
+				movingForwards = true;
+			}
+			else
+			{
+				movingBackwards = (position[space] == 1 || position[space] >= 3);
+				movingForwards = (position[space] == 2 || position[space] >= 3);
+			}
 		}
 		else
 		{
@@ -276,7 +285,7 @@ using namespace checkers;
 		{
 			return false;
 		}
-		if (possibleMoves(space, move, true))
+		if (possibleMoves(space, move, true, position[previous] > 2))
 		{
 			if (position[space] == 1)
 			{
@@ -381,4 +390,25 @@ using namespace checkers;
 			return 28;
 		}
 		return 0;
+	}
+
+	void checkersGame::checkPromotion()
+	{
+		for (int i = 0; i < 12; i++)
+		{
+			for (int j = 1; j <= 4; j++)
+			{
+				if (bluePieces[i] == j)
+				{
+					position[bluePieces[i]] = 4;
+				}
+			}
+			for (int j = 29; j <= 32; j++)
+			{
+				if (redPieces[i] == j)
+				{
+					position[redPieces[i]] = 3;
+				}
+			}
+		}
 	}

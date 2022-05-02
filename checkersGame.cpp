@@ -8,6 +8,7 @@ using namespace checkers;
 	void checkersGame::play()
 	{
 		int move[2] = { 0,0 };
+		printBoard();
 		if (turn)
 		{
 			int i = 0;
@@ -42,6 +43,7 @@ using namespace checkers;
 		}
 		checkPromotion();
 		turn = !turn;
+		
 	}
 
 	//executes valid moves by editing the position and piece
@@ -409,6 +411,49 @@ using namespace checkers;
 				{
 					position[redPieces[i]] = 3;
 				}
+			}
+		}
+	}
+
+	//prints board with numbers to help players know where to move
+	void checkersGame::printBoard()
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			if (i == 7)
+			{
+				cout << "   " << abs(i * 4 - 32) - 3 << "   |       |   " << abs(i * 4 - 32) - 2 << "   |       |   " 
+					<< abs(i * 4 - 32) - 1 << "   |       |   " << abs(i * 4 - 32) << "   |       \n\n";
+			}
+			else if (i == 0)
+			{
+				cout << "\n       |  " << abs(i * 4 - 32) - 3 << "   |       |  " << abs(i * 4 - 32) - 2 << "   |       |  " 
+					<< abs(i * 4 - 32) - 1 << "   |       |  " << abs(i * 4 - 32) << "   \n"
+					<< "  ___     ___     ___     ___     ___     ___     ___     ___  \n\n";
+			}
+			else if (i == 6)
+			{
+				cout << "       |   " << abs(i * 4 - 32) - 3 << "   |       |   " << abs(i * 4 - 32) - 2 << "   |       |   "
+					<< abs(i * 4 - 32) - 1 << "   |       |   " << abs(i * 4 - 32) << "   \n"
+					<< "  ___     ___     ___     ___     ___     ___     ___     ___  \n\n";
+			}
+			else if (i == 5)
+			{
+				cout << "   " << abs(i * 4 - 32) - 3 << "   |       |  " << abs(i * 4 - 32) - 2 << "   |       |  "
+					<< abs(i * 4 - 32) - 1 << "   |       |  " << abs(i * 4 - 32) << "   |       \n"
+					<< "  ___     ___     ___     ___     ___     ___     ___     ___  \n\n";
+			}
+			else if (i % 2 == 0)
+			{
+				cout << "       |  " << abs(i * 4 - 32) - 3 << "   |       |  " << abs(i * 4 - 32) - 2 << "   |       |  " 
+					<< abs(i * 4 - 32) - 1 << "   |       |  " << abs(i * 4 - 32) << "   \n"
+					<< "  ___     ___     ___     ___     ___     ___     ___     ___  \n\n";
+			}
+			else
+			{
+				cout << "  " << abs(i * 4 - 32) - 3 << "   |       |  " << abs(i * 4 - 32) - 2 << "   |       |  " 
+					<< abs(i * 4 - 32) - 1 << "   |       |  " << abs(i * 4 - 32) << "   |       \n"
+					<< "  ___     ___     ___     ___     ___     ___     ___     ___  \n\n";
 			}
 		}
 	}

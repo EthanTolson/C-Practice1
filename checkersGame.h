@@ -20,6 +20,7 @@ namespace checkers
 			bool checkWin();
 			int getJumpAfter(int space, int move);
 			void checkPromotion();
+			void printBoard();
 		private:
 	};
 }

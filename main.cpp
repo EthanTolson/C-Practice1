@@ -1191,7 +1191,7 @@ int main()
 	checkersGame checkers;
 
 	//display window while it is not closed and game is not over
-	while (!glfwWindowShouldClose(window) || !checkers.checkWin())
+	while (!glfwWindowShouldClose(window) && !checkers.checkWin())
 	{
 		//background color
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

@@ -14,13 +14,13 @@ namespace checkers
 			//1 is red piece 2 is blue piece 3 is red king 4 is blue king 0 is empty square
 			int position[32] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
 			void play();
+			bool checkWin();
+		private:
 			bool validMove(int move[]);
 			bool possibleMoves(int space, int move, bool jumpCheck, bool isKing = false);
 			bool jump(int space, int move, int previous);
-			bool checkWin();
-			int getJumpAfter(int space, int move);
 			void checkPromotion();
 			void printBoard();
-		private:
+			int getJumpAfter(int space, int move);
 	};
 }

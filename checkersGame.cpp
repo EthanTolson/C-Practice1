@@ -18,6 +18,8 @@ using namespace checkers;
 				{
 					cout << "That is not a valid move try again!\n\n";
 				}
+				//take input for players move 
+				//still need to find a way to force int input
 				cout << "\nRed's turn!\nWhich piece would you like to move? ";
 				cin >> move[0];
 				cout << "\nWhere would you like to move that piece? ";
@@ -34,6 +36,8 @@ using namespace checkers;
 				{
 					cout << "That is not a valid move try again!\n\n";
 				}
+				//take input for players move 
+				//still need to find a way to force int input
 				cout << "\nBlue's turn!\nWhich piece would you like to move? ";
 				cin >> move[0];
 				cout << "\nWhere would you like to move that piece? ";
@@ -41,6 +45,7 @@ using namespace checkers;
 				i++;
 			}
 		}
+		//at the end of each turn check if any piece has made it across the board
 		checkPromotion();
 		turn = !turn;
 		
@@ -52,11 +57,12 @@ using namespace checkers;
 		//turn keeps track of red and blues turns 
 		if (turn)
 		{
-			for (int i = 0; i < sizeof(redPieces); i++)
+			for (int i = 0; i < sizeof(redPieces)/sizeof(redPieces[0]); i++)
 			{
 				//makes sure move is valid
 				if (move[0] == redPieces[i] && possibleMoves(redPieces[i], move[1], false))
 				{
+					//if the move is valid then update all arrays to show change
 					int change = position[redPieces[i]-1];
 					position[redPieces[i]-1] = 0;
 					position[move[1]-1] = change;
@@ -67,11 +73,12 @@ using namespace checkers;
 		}
 		else if (!turn)
 		{
-			for (int i = 0; i < sizeof(bluePieces); i++)
+			for (int i = 0; i < sizeof(bluePieces)/sizeof(bluePieces[0]); i++)
 			{
 				//makes sure move is valid
 				if (move[0] == bluePieces[i] && possibleMoves(bluePieces[i], move[1], false))
 				{
+					//if the move is valid then update all arrays to show change
 					int change = position[bluePieces[i]-1];
 					position[bluePieces[i]-1] = 0;
 					position[move[1]-1] = change;
@@ -94,17 +101,20 @@ using namespace checkers;
 		{
 			if (isKing)
 			{
+				//if the piece is a king then it can jump fowards and backwards
 				movingBackwards = true;
 				movingForwards = true;
 			}
 			else
 			{
+
 				movingBackwards = (position[space - 1] == 1 || position[space - 1] >= 3);
 				movingForwards = (position[space - 1] == 2 || position[space - 1] >= 3);
 			}
 		}
 		else
 		{
+			//if the player is not jumping check for empty space and check if the piece is a king
 			movingBackwards = (position[space - 1] == 2 || position[space-1] >= 3) && position[move-1] < 1;
 			movingForwards = (position[space - 1] == 1 || position[space-1] >= 3) && position[move-1] < 1;
 		}
@@ -113,6 +123,7 @@ using namespace checkers;
 		{
 			if (jump(getJumpAfter(space, move), move, space))
 			{
+				//shoudl only return true if jump is successful
 				return true;
 			}
 		}
@@ -239,7 +250,8 @@ using namespace checkers;
 	{
 		bool redHasPieces = false;
 		bool blueHasPieces = false;
-		for (int i = 0; i < sizeof(redPieces); i++)
+		//iterates through redpieces and blue pieces to see if any pieces remain
+		for (int i = 0; i < sizeof(redPieces)/sizeof(redPieces[0]); i++)
 		{
 			if (redPieces[i] > 0)
 			{
@@ -251,16 +263,18 @@ using namespace checkers;
 				blueHasPieces = true;
 			}
 		}
-
+		//if oth red and blue have remaining pieces then the game is not over
 		if (blueHasPieces && redHasPieces)
 		{
 			return false;
 		}
+		//if red has remaining pieces then red wins
 		else if (redHasPieces)
 		{
 			cout << "\nCongratulations Red Wins!!\n\n\n";
 			return true;
 		}
+		//if red has no remaining pieces blue wins
 		else
 		{
 			cout << "\nCongratulations Blue Wins!!\n\n\n";
@@ -275,6 +289,8 @@ using namespace checkers;
 		{
 			return false;
 		}
+		//checks the space the piece wants to jump to and if it is empty 
+		//and the piece it wants to jump is an enemy piece then remove it from position and from either bluePieces or redPieces
 		if (possibleMoves(space, move, true, position[previous-1] > 2))
 		{
 			if (position[space-1] == 1 || position[space-1] == 3)
@@ -298,9 +314,10 @@ using namespace checkers;
 				}
 			}
 			position[space-1] = 0;
-			
+			//the jump was successful
 			return true;
 		}
+		//the jump failed
 		return false;
 	}
 
@@ -381,7 +398,7 @@ using namespace checkers;
 		}
 		return 0;
 	}
-
+	//promotes the pieces if they are in the back row or front row
 	void checkersGame::checkPromotion()
 	{
 		for (int i = 0; i < 12; i++)

@@ -1175,7 +1175,7 @@ int main()
 
 	glEnableVertexAttribArray(1);
 
-
+	//bind vertices to current buffer
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 	glBindVertexArray(1);
@@ -1205,6 +1205,7 @@ int main()
 			glDrawArrays(GL_TRIANGLES, i, 3);
 			glDrawArrays(GL_TRIANGLES, i + 2, 3);
 		}
+		//draws outline of board
 		glDrawArrays(GL_LINE_LOOP, 32*5, 4);
 
 		//draw blue pieces
@@ -1235,15 +1236,13 @@ int main()
 				glDrawArrays(GL_TRIANGLES, (i * 3) + (32 * 5 + 4 + ((32 * 3) * 2)), 3);
 			}
 		}
-
-
 		
 		//refresh buffer to show board
 		glfwSwapBuffers(window);
 
 		glfwPollEvents();
 
-		//start checkers game
+		//start checkers game after we draw the board so the players can see their first move
 		checkers.play();
 	}
 

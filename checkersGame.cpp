@@ -4,6 +4,7 @@
 using namespace std;
 using namespace checkers;
 
+istream& getline(istream& ins, int& n);
 
 	void checkersGame::play()
 	{
@@ -21,9 +22,19 @@ using namespace checkers;
 				//take input for players move 
 				//still need to find a way to force int input
 				cout << "\nRed's turn!\nWhich piece would you like to move? ";
-				cin >> move[0];
+				while (!getline(cin, move[0]))
+				{
+					cin.clear();
+					cout << "Please Enter an Integer! ";
+				}
+				//cin >> move[0];
 				cout << "\nWhere would you like to move that piece? ";
-				cin >> move[1];
+				while (!getline(cin, move[1]))
+				{
+					cin.clear();
+					cout << "Please Enter an Integer! ";
+				}
+				//cin >> move[1];
 				i++;
 			}
 		}
@@ -39,9 +50,19 @@ using namespace checkers;
 				//take input for players move 
 				//still need to find a way to force int input
 				cout << "\nBlue's turn!\nWhich piece would you like to move? ";
-				cin >> move[0];
+				while (!getline(cin, move[0]))
+				{
+					cin.clear();
+					cout << "Please Enter an Integer! ";
+				}
+				//cin >> move[0];
 				cout << "\nWhere would you like to move that piece? ";
-				cin >> move[1];
+				while (!getline(cin, move[1]))
+				{
+					cin.clear();
+					cout << "Please Enter an Integer! ";
+				}
+				//cin >> move[1];
 				i++;
 			}
 		}
@@ -461,4 +482,31 @@ using namespace checkers;
 					<< "  ___     ___     ___     ___     ___     ___     ___     ___  \n\n";
 			}
 		}
+	}
+//Code to force int input found at http://www.cplusplus.com/forum/beginner/170685/
+#include <ciso646>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+	istream& getline(istream& ins, int& n)
+	{
+		n = 0;  // stupid C++11 standard behavior
+
+		// Read a line (terminated by ENTER|NEWLINE) from the user
+		std::string s;
+		if (std::getline(ins, s))
+		{
+			// Get rid of any trailing whitespace
+			s.erase(s.find_last_not_of(" \f\n\r\t\v") + 1);
+
+			// Convert it to integer
+			std::istringstream ss(s);
+			ss >> n;
+
+			// Check to see that there is nothing left over
+			if (!ss.eof())
+				ins.setstate(std::ios::failbit);
+		}
+		return ins;
 	}

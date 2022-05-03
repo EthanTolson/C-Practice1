@@ -68,6 +68,7 @@ I had no background with C++ and wanted to challenge myself to create a function
 * [YouTube: OpenGL Tutorial](https://www.youtube.com/watch?v=45MIykWJ-C4)
 * [YouTube: OpenGL Vertex Colors](https://www.youtube.com/watch?v=-59ko_blmnY)
 * [Open GL Documentation](https://www.khronos.org/opengl/)
+* [C++ Forums](http://www.cplusplus.com/forum/beginner/170685/)
 
 # Future Work
 

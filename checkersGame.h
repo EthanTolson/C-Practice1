@@ -13,8 +13,6 @@ namespace checkers
 			void play();
 			bool checkWin();
 		private:
-			bool blueWin = false;
-			bool redWin = false;
 			bool turn = true;
 			bool validMove(int move[]);
 			bool possibleMoves(int space, int move, bool jumpCheck, bool isKing = false);

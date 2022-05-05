@@ -1190,6 +1190,7 @@ int main()
 	//create checkers object
 	checkersGame checkers;
 
+	//game loop
 	//display window while it is not closed and game is not over
 	while (!glfwWindowShouldClose(window) && !checkers.checkWin())
 	{
@@ -1255,6 +1256,6 @@ int main()
 	glfwDestroyWindow(window);
 	glfwTerminate();
 
-	//exit code
+	//end program
 	return 0;
 }

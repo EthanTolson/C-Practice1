@@ -11,9 +11,8 @@ Main handles the graphics and the creation of the checkersGame object and use of
 I wrote this software to show the knowledge that I have gained over the past two weeks about the C++ language.
 I had no background with C++ and wanted to challenge myself to create a functioning program that included all of the things I had learned.
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running and a walkthrough of the code.  Focus should be on sharing what you learned about the language syntax.}
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/KcLQVzRJTmw)
 
 # Before You Run
 * Use Visual Studio
